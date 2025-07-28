@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Peminjaman Barang Milik Negara</title>
+    <!-- Memuat Tailwind CSS untuk styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Memuat Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Menggunakan font Inter sebagai default */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-2xl">
+        <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-lg">
+            <header class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-cyan-400">Formulir Peminjaman Barang Milik Negara</h1>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">Isi formulir di bawah untuk mengirim notifikasi peminjaman via WhatsApp.</p>
+            </header>
+
+            <!-- Form Peminjaman -->
+            <form id="borrow-form">
+                <div class="space-y-6">
+                    <!-- Nomor WhatsApp Tujuan -->
+                    <div>
+                        <label for="owner-whatsapp" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Isi Nomor WhatsApp Kepala Sub Bagian Umum Dan Keuangan</label>
+                        <input type="tel" id="owner-whatsapp" value="6281234567890" placeholder="Contoh: 6281234567890" class="w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-500 focus:border-blue-500 dark:focus:border-cyan-500 transition" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Gunakan format internasional (misal: 62 untuk Indonesia) tanpa tanda '+' atau spasi.</p>
+                    </div>
+
+                    <!-- Nama Peminjam -->
+                    <div>
+                        <label for="borrower-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Peminjam</label>
+                        <input type="text" id="borrower-name" placeholder="Masukkan nama lengkap peminjam" class="w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-500 focus:border-blue-500 dark:focus:border-cyan-500 transition" required>
+                    </div>
+                    
+                    <!-- Penanggung Jawab Peminjam -->
+                    <div>
+                        <label for="person-in-charge" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Penanggung Jawab Peminjam</label>
+                        <input type="text" id="person-in-charge" placeholder="Masukkan nama lengkap penanggung jawab" class="w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-500 focus:border-blue-500 dark:focus:border-cyan-500 transition" required>
+                    </div>
+
+                    <!-- Tanggal Peminjaman -->
+                    <div>
+                        <label for="borrow-date" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tanggal Peminjaman</label>
+                        <input type="date" id="borrow-date" class="w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-500 focus:border-blue-500 dark:focus:border-cyan-500 transition" required>
+                    </div>
+
+                    <!-- Barang yang Dipinjam -->
+                    <div>
+                        <label for="borrowed-items" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Barang yang Dipinjam</label>
+                        <textarea id="borrowed-items" rows="4" placeholder="Contoh:&#10;1. Laptop Dell Latitude (SN: ABC123)&#10;2. Proyektor InFocus (SN: XYZ987)" class="w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-500 focus:border-blue-500 dark:focus:border-cyan-500 transition" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Tombol Kirim -->
+                <div class="mt-8">
+                    <button type="submit" class="w-full flex justify-center items-center gap-x-2 bg-blue-600 hover:bg-blue-700 dark:bg-cyan-600 dark:hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-md transition duration-300 shadow-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
+                        </svg>
+                        Kirim Notifikasi ke WhatsApp
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Pesan Error -->
+            <div id="error-message" class="hidden mt-4 text-center text-red-500 bg-red-100 dark:bg-red-900/20 p-3 rounded-md"></div>
+
+        </div>
+        <footer class="text-center mt-6 text-sm text-gray-500 dark:text-gray-400">
+            <p>Aplikasi ini akan membuka WhatsApp untuk mengirim pesan.</p>
+            <p>Anda hanya perlu menekan tombol 'kirim' di dalam aplikasi WhatsApp.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Set tanggal hari ini sebagai nilai default untuk input tanggal
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0'); // Bulan dimulai dari 0
+            const dd = String(today.getDate()).padStart(2, '0');
+            document.getElementById('borrow-date').value = `${yyyy}-${mm}-${dd}`;
+        });
+
+        const borrowForm = document.getElementById('borrow-form');
+        const errorMessageDiv = document.getElementById('error-message');
+
+        borrowForm.addEventListener('submit', function(event) {
+            // Mencegah form dari pengiriman standar yang akan me-reload halaman
+            event.preventDefault();
+            errorMessageDiv.classList.add('hidden'); // Sembunyikan pesan error sebelumnya
+
+            // Mengambil nilai dari setiap input
+            const ownerWhatsApp = document.getElementById('owner-whatsapp').value.trim();
+            const borrowerName = document.getElementById('borrower-name').value.trim();
+            const personInCharge = document.getElementById('person-in-charge').value.trim();
+            const borrowDate = document.getElementById('borrow-date').value;
+            const borrowedItems = document.getElementById('borrowed-items').value.trim();
+
+            // Validasi sederhana: memastikan semua field terisi
+            if (!ownerWhatsApp || !borrowerName || !personInCharge || !borrowDate || !borrowedItems) {
+                errorMessageDiv.textContent = 'Semua kolom wajib diisi!';
+                errorMessageDiv.classList.remove('hidden');
+                return;
+            }
+
+            // Mengubah format tanggal menjadi lebih mudah dibaca (DD-MM-YYYY)
+            const dateParts = borrowDate.split('-');
+            const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+
+            // Membuat template pesan untuk WhatsApp
+            // Menggunakan karakter khusus WhatsApp untuk formatting (e.g., *tebal*, _miring_)
+            const message = `
+*KONFIRMASI PEMINJAMAN BARANG MILIK NEGARA*
+
+Dengan ini saya,
+*Nama Peminjam:* ${borrowerName}
+*Penanggung Jawab:* ${personInCharge}
+*Tanggal Pinjam:* ${formattedDate}
+
+Mengajukan peminjaman barang sebagai berikut:
+\`\`\`
+${borrowedItems}
+\`\`\`
+
+Terima kasih atas perhatiannya.
+            `.trim(); // .trim() untuk menghapus spasi ekstra di awal/akhir
+
+            // Meng-encode pesan agar sesuai dengan format URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Membuat URL "Click to Chat" WhatsApp
+            // URL ini akan membuka chat dengan nomor tujuan dan pesan yang sudah terisi
+            const whatsappUrl = `https://wa.me/${ownerWhatsApp}?text=${encodedMessage}`;
+
+            // Membuka URL WhatsApp di tab baru
+            // Pengguna kemudian hanya perlu menekan tombol kirim di WhatsApp
+            window.open(whatsappUrl, '_blank').focus();
+        });
+    </script>
+</body>
+</html>
